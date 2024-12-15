@@ -1,4 +1,4 @@
-use adventofcode_24::{day01::solve_day01, day02::solve_day02};
+use adventofcode_24::{day01::solve_day01, day02::solve_day02, day03::solve_day03};
 use clap::{Arg, Command};
 
 fn main() {
@@ -16,6 +16,11 @@ fn main() {
                 .short('2')
                 .help("Path to Day 02 Input file"),
         )
+        .arg(
+            Arg::new("day03")
+                .short('3')
+                .help("Path to Day 03 Input file"),
+        )
         .get_matches();
 
     if let Some(file) = matches.get_one::<String>("day01") {
@@ -30,6 +35,17 @@ fn main() {
             Ok((r1, r2)) => {
                 println!(
                     "Result of Day 02:\nSafe Reports: {r1}\nSafe Reports with tolerance: {r2}"
+                );
+            }
+            Err(e) => eprintln!("{e}"),
+        }
+    }
+
+    if let Some(file) = matches.get_one::<String>("day03") {
+        match solve_day03(file) {
+            Ok((r1, r2)) => {
+                println!(
+                    "Result of Day 02:\nSum of uncorrupted memory multiplications: {r1}\nSum of uncorrupted and enabled memory multiplications: {r2}"
                 );
             }
             Err(e) => eprintln!("{e}"),
