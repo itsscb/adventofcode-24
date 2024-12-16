@@ -76,7 +76,7 @@ fn parse_multiplications_with_rules(input: &str) -> Vec<(i32, i32)> {
                                     continue;
                                 }
                                 e => {
-                                    dbg!("Error: {:?}", e);
+                                    eprintln!("Error: {e:?}");
                                     break;
                                 }
                             },
@@ -204,7 +204,6 @@ mod tests {
         let want = 48;
         let result = parse_multiplications_with_rules(input);
 
-        dbg!(&result);
         let got = result.iter().map(|x| multiply(*x)).sum::<i32>();
 
         assert_eq!(want, got);
