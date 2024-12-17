@@ -1,5 +1,6 @@
 use adventofcode_24::{
     day01::solve_day01, day02::solve_day02, day03::solve_day03, day04::solve_day04,
+    day05::solve_day05,
 };
 use clap::{Arg, Command};
 
@@ -27,6 +28,11 @@ fn main() {
             Arg::new("day04")
                 .short('4')
                 .help("Path to Day 04 Input file"),
+        )
+        .arg(
+            Arg::new("day05")
+                .short('5')
+                .help("Path to Day 05 Input file"),
         )
         .get_matches();
 
@@ -63,6 +69,15 @@ fn main() {
         match solve_day04(file) {
             Ok((r1, r2)) => {
                 println!("Result of Day 04:\nXMAS count: {r1}\nX-MAS count: {r2}");
+            }
+            Err(e) => eprintln!("{e}"),
+        }
+    }
+
+    if let Some(file) = matches.get_one::<String>("day05") {
+        match solve_day05(file) {
+            Ok((r1, r2)) => {
+                println!("Result of Day 05:\nOrdered middle page count: {r1}\nPart two: {r2}");
             }
             Err(e) => eprintln!("{e}"),
         }
