@@ -1,6 +1,6 @@
 use std::{collections::HashMap, error::Error, fs};
 
-/// Solves the problem for day 04.
+/// Solves the problem for day 05.
 ///
 /// # Errors
 ///
@@ -69,12 +69,6 @@ fn order_updates(updates: &[i32], rules: &HashMap<i32, Vec<i32>>) -> Vec<i32> {
         for (key, values) in rules {
             if a == key && values.contains(b) {
                 return std::cmp::Ordering::Less;
-                // } else if b == key && values.contains(a) {
-                //     return std::cmp::Ordering::Greater;
-                // } else if a < b {
-                //     return std::cmp::Ordering::Less;
-                // } else if a > b {
-                //     return std::cmp::Ordering::Greater;
             }
         }
         std::cmp::Ordering::Equal
@@ -142,22 +136,18 @@ mod tests {
 
         let want = vec![75, 29, 13];
         let got = order_updates(&updates[2], &rules);
-        dbg!(&got, &updates[2]);
         assert_eq!(got, want);
 
         let want = vec![97, 75, 47, 61, 53];
         let got = order_updates(&updates[3], &rules);
-        dbg!(&got, &updates[3]);
         assert_eq!(got, want);
 
         let want = vec![61, 29, 13];
         let got = order_updates(&updates[4], &rules);
-        dbg!(&got, &updates[4]);
         assert_eq!(got, want);
 
         let want = vec![97, 75, 47, 29, 13];
         let got = order_updates(&updates[5], &rules);
-        dbg!(&got, &want, &updates[5]);
         assert_eq!(got, want);
 
         let want = 61;
